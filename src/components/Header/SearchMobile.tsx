@@ -3,7 +3,7 @@ import { BiSearch } from 'react-icons/bi';
 
 const SearchMobile: React.FC = () => {
   return (
-    <form className="w-full flex justify-between items-center bg-black">
+    <form className="w-full flex justify-between items-center bg-black lg:hidden">
       <input
         type="text"
         placeholder="Search ..."

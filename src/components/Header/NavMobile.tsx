@@ -12,9 +12,13 @@ const navLinks: link[] = [
   { name: 'Genre', slug: 'genre' },
 ];
 
-const NavMobile: React.FC = () => {
+const NavMobile: React.FC<{ isShow: boolean }> = (props) => {
   return (
-    <div className="w-full bg-primaryBlack/95 absolute top-12 right-0 left-0">
+    <div
+      className={`w-full block bg-primaryBlack/95 absolute right-0 left-0 transition-all duration-500 lg:hidden ${
+        props.isShow ? 'top-12 opacity-1 visible' : 'top-0 opacity-0 invisible'
+      }`}
+    >
       <ul className="w-full flex flex-col justify-between items-center">
         {navLinks.map((item: link, i: number): ReactNode => {
           return (
