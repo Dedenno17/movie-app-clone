@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState, ReactNode, useEffect } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiSearch } from 'react-icons/bi';
 import { BiCameraMovie } from 'react-icons/bi';
@@ -7,6 +7,7 @@ import { AiFillFolderOpen } from 'react-icons/ai';
 import { AiFillCaretDown } from 'react-icons/ai';
 import SearchMobile from './SearchMobile';
 import Link from 'next/link';
+import { useAppSelector } from '../../store/hooks';
 
 interface links {
   name: string;
@@ -22,13 +23,22 @@ const navigationLinks: links[] = [
 
 const Header: React.FC<{ onShow: () => void }> = (props) => {
   const [isShowSearchMobile, setIsShowSearchMobile] = useState<boolean>(false);
+  const scrollYValue = useAppSelector((state) => state.appScrollY.value);
 
   const showSearchMobileHandler = () => {
     setIsShowSearchMobile((prevState) => !prevState);
   };
 
+  useEffect(() => {
+    console.log(scrollYValue);
+  }, [scrollYValue]);
+
   return (
-    <header className="max-w-[1440px] mx-auto">
+    <header
+      className={`static max-w-[1440px] mx-auto ${
+        scrollYValue > 180 ? 'lg:fixed lg:top-0 lg:left-0 lg:right-0' : ''
+      }`}
+    >
       <div className="flex justify-between items-center text-slate-200 py-1 px-3 border-b-[1px] border-b-secondaryGrey lg:py-4 lg:px-8">
         <GiHamburgerMenu
           className="text-2xl cursor-pointer lg:hidden"

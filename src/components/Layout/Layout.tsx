@@ -8,7 +8,8 @@ interface BaseLayoutProps {
 }
 
 const Layout: React.FC<BaseLayoutProps> = (props) => {
-  const { elementRef } = useScreenResponsive();
+  const { elementRef } = useScreenResponsive('resize');
+  useScreenResponsive('scroll');
 
   const [isShowNavMobile, setIsShowNavMobile] = useState<boolean>(false);
 
@@ -19,7 +20,9 @@ const Layout: React.FC<BaseLayoutProps> = (props) => {
   return (
     <div className="w-full min-h-screen bg-primaryBlack" ref={elementRef}>
       <Header onShow={showNavMobileHandler} />
-      <main>{props.children}</main>
+      <main className="max-w-[1440px] mx-auto h-[2000px]">
+        {props.children}
+      </main>
       <footer className="w-full p-10 text-center text-slate-200">
         All Right Reserved
       </footer>

@@ -2,10 +2,12 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
 // reducers
 import appScreenWidthReducer from '../slices/appScreenWidth';
+import appScrollYReducer from '../slices/appScrollY';
 
 export const store = configureStore({
   reducer: {
     appScreenWidth: appScreenWidthReducer,
+    appScrollY: appScrollYReducer,
   },
 });
 

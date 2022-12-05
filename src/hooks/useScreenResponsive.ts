@@ -1,31 +1,46 @@
 import { useEffect, useCallback, useRef } from 'react';
 import { useAppDispatch } from '../store/hooks';
 import { appScreenWidthActions } from '../slices/appScreenWidth';
+import { appScrollYActions } from '../slices/appScrollY';
 
-export const useScreenResponsive = () => {
+export const useScreenResponsive = (event: string) => {
   const layoutRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
 
-  const screenWidthHandler = useCallback(() => {
-    dispatch(
-      appScreenWidthActions.setScreenWidth(layoutRef.current?.offsetWidth)
-    );
-  }, [dispatch]);
+  const appResponsiveHandler = useCallback(
+    function (this: WindowProxy) {
+      if (event === 'scroll') {
+        dispatch(appScrollYActions.setScrollY(this.scrollY));
+        return;
+      }
+
+      dispatch(
+        appScreenWidthActions.setScreenWidth(layoutRef.current?.offsetWidth)
+      );
+    },
+    [dispatch, event]
+  );
 
   useEffect(() => {
-    window.addEventListener('resize', screenWidthHandler);
+    window.addEventListener(event, appResponsiveHandler);
 
     return () => {
-      window.removeEventListener('resize', screenWidthHandler, true);
+      window.removeEventListener(event, appResponsiveHandler, true);
     };
-  }, [screenWidthHandler]);
+  }, [appResponsiveHandler, event]);
 
   useEffect(() => {
+    if (event === 'scroll') {
+      dispatch(appScrollYActions.setScrollY(window.scrollY));
+      return;
+    }
+
     dispatch(
       appScreenWidthActions.setScreenWidth(layoutRef.current?.offsetWidth)
     );
-  }, [dispatch]);
+  }, [dispatch, event]);
+
   return {
-    elementRef: layoutRef,
+    elementRef: event === 'resize' ? layoutRef : undefined,
   };
 };
