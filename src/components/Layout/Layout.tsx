@@ -2,6 +2,7 @@ import React, { ReactNode, useState } from 'react';
 import { useScreenResponsive } from '../../hooks/useScreenResponsive';
 import Header from '../Header/Header';
 import NavMobile from '../Header/NavMobile';
+import Footer from '../Footer/Footer';
 
 interface BaseLayoutProps {
   children?: ReactNode;
@@ -23,9 +24,7 @@ const Layout: React.FC<BaseLayoutProps> = (props) => {
       <main className="max-w-[1440px] mx-auto h-[2000px]">
         {props.children}
       </main>
-      <footer className="w-full p-10 text-center text-slate-200">
-        All Right Reserved
-      </footer>
+      <Footer />
       <NavMobile isShow={isShowNavMobile} />
     </div>
   );

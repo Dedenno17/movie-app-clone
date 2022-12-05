@@ -29,10 +29,6 @@ const Header: React.FC<{ onShow: () => void }> = (props) => {
     setIsShowSearchMobile((prevState) => !prevState);
   };
 
-  useEffect(() => {
-    console.log(scrollYValue);
-  }, [scrollYValue]);
-
   return (
     <header
       className={`static max-w-[1440px] mx-auto ${
