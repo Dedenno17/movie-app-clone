@@ -21,7 +21,7 @@ const Layout: React.FC<BaseLayoutProps> = (props) => {
   return (
     <div className="w-full min-h-screen bg-primaryBlack" ref={elementRef}>
       <Header onShow={showNavMobileHandler} />
-      <main className="max-w-[1440px] mx-auto h-[2000px]">
+      <main className="max-w-[1280px] mx-auto min-h-screen">
         {props.children}
       </main>
       <Footer />
