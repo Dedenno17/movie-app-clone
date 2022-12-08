@@ -1,15 +1,18 @@
 import React from 'react';
+import Image from 'next/image';
 import { BsPlayCircle } from 'react-icons/bs';
 import { AiFillStar } from 'react-icons/ai';
 
 const ContentCard: React.FC = () => {
   return (
     <li className="flex flex-col">
-      <div className="relative h-[75%] overflow-hidden rounded-xl cursor-pointer group">
-        <img
+      <div className="relative h-[200px] overflow-hidden rounded-xl cursor-pointer group md:h-[240px] lg:h-[200px] xl:h-[240px]">
+        <Image
           src="https://image.tmdb.org/t/p/w185/npdB6eFzizki0WaZ1OvKcJrWe97.jpg"
           alt="content"
-          className="w-full h-full"
+          fill
+          sizes="true"
+          priority
         />
         <div className="absolute top-0 left-0 bottom-0 right-0 bg-black/70 opacity-0 transition duration-500 group-hover:opacity-100" />
         <BsPlayCircle className="text-5xl text-slate-200 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 scale-125 transition duration-500 group-hover:opacity-100 group-hover:scale-100" />
