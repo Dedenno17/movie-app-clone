@@ -1,9 +1,77 @@
-import type { NextPage } from 'next';
+import { GetStaticProps, GetStaticPropsResult, NextPage } from 'next';
 import Head from 'next/head';
 import { ReactNode } from 'react';
 import ContentCard from '../src/components/UI/ContentCard';
+import popularMoviesInterface from '../src/models/popularMoviesData';
+import popularTvSeriesInterface from '../src/models/popularTvSeriesData';
 
-const Home: NextPage = () => {
+interface HomeProps {
+  popularMovies: popularMoviesInterface;
+  popularTvSeries: popularTvSeriesInterface;
+}
+
+// function to get popular movies
+export const getPopularMovies = async (): Promise<
+  popularMoviesInterface | any
+> => {
+  try {
+    const res = await fetch(
+      'https://api.themoviedb.org/3/movie/popular?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US&page=1'
+    );
+    if (!res.ok) {
+      throw new Error();
+    }
+    const data = await res.json();
+    return data;
+  } catch (err: any) {
+    alert(err.message);
+  }
+};
+
+// function to get popular Tv series
+export const getPopularTvSeries = async (): Promise<
+  popularTvSeriesInterface | any
+> => {
+  try {
+    const res = await fetch(
+      'https://api.themoviedb.org/3/tv/popular?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US&page=1'
+    );
+    if (!res.ok) {
+      throw new Error();
+    }
+    const data = await res.json();
+    return data;
+  } catch (err: any) {
+    alert(err.message);
+  }
+};
+
+// prerendered function
+export const getStaticProps: GetStaticProps<HomeProps> = async (): Promise<
+  GetStaticPropsResult<HomeProps> | any
+> => {
+  const popularMovies = await getPopularMovies();
+  const popularTvSeries = await getPopularTvSeries();
+
+  return {
+    props: {
+      popularMovies,
+      popularTvSeries,
+    },
+  };
+};
+
+const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
+  const filteredPopularMovies = popularMovies.results.slice(0, 12);
+  const filteredPopularTvSeries = popularTvSeries.results.slice(0, 12);
+
+  const featuredMovies = popularMovies.results
+    .filter((item) => item['vote_average'] > 7)
+    .slice(0, 8);
+  const featuredTvSeries = popularTvSeries.results
+    .filter((item) => item['vote_average'] > 7)
+    .slice(0, 8);
+
   return (
     <div className="w-full p-5">
       <Head>
@@ -22,11 +90,34 @@ const Home: NextPage = () => {
           FEATURED
         </span>
         <ul className="grid grid-cols-3 gap-3 mt-6 md:grid-cols-4 lg:grid-cols-6 lg:gap-7">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map(
-            (item: number): ReactNode => (
-              <ContentCard key={item + ''} />
-            )
-          )}
+          {featuredMovies &&
+            featuredMovies.map(
+              (item): ReactNode => (
+                <ContentCard
+                  key={item.id + ''}
+                  title={item['original_title']}
+                  img={item['poster_path']}
+                  rating={item['vote_average']}
+                  date={item['release_date']}
+                  typeContent="movies"
+                  featured={true}
+                />
+              )
+            )}
+          {featuredTvSeries &&
+            featuredTvSeries.map(
+              (item): ReactNode => (
+                <ContentCard
+                  key={item.id + ''}
+                  title={item['original_name']}
+                  img={item['poster_path']}
+                  rating={item['vote_average']}
+                  date={item['first_air_date']}
+                  typeContent="tvseries"
+                  featured={true}
+                />
+              )
+            )}
         </ul>
       </div>
 
@@ -35,24 +126,42 @@ const Home: NextPage = () => {
           MOVIES
         </span>
         <ul className="grid grid-cols-3 gap-3 mt-6 md:grid-cols-4 lg:grid-cols-6 lg:gap-7">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
-            (item: number): ReactNode => (
-              <ContentCard key={item + ''} />
-            )
-          )}
+          {filteredPopularMovies &&
+            filteredPopularMovies.map(
+              (item): ReactNode => (
+                <ContentCard
+                  key={item.id + ''}
+                  title={item['original_title']}
+                  img={item['poster_path']}
+                  rating={item['vote_average']}
+                  date={item['release_date']}
+                  typeContent="movies"
+                  featured={false}
+                />
+              )
+            )}
         </ul>
       </div>
 
       <div className="w-full">
         <span className="px-3 py-1 w-full text-xl text-slate-200 border-l-[3px] border-l-primaryRed">
-          MOVIES
+          TV SERIES
         </span>
         <ul className="grid grid-cols-3 gap-3 mt-6 md:grid-cols-4 lg:grid-cols-6 lg:gap-7">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
-            (item: number): ReactNode => (
-              <ContentCard key={item + ''} />
-            )
-          )}
+          {filteredPopularTvSeries &&
+            filteredPopularTvSeries.map(
+              (item): ReactNode => (
+                <ContentCard
+                  key={item.id + ''}
+                  title={item['original_name']}
+                  img={item.poster_path}
+                  rating={item['vote_average']}
+                  date={item['first_air_date']}
+                  typeContent="tvseries"
+                  featured={false}
+                />
+              )
+            )}
         </ul>
       </div>
     </div>
