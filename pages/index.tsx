@@ -98,7 +98,7 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
                   title={item['original_title']}
                   img={item['poster_path']}
                   rating={item['vote_average']}
-                  date={item['release_date']}
+                  date={item['release_date'].slice(0, 4)}
                   typeContent="movies"
                   featured={true}
                 />
@@ -112,7 +112,7 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
                   title={item['original_name']}
                   img={item['poster_path']}
                   rating={item['vote_average']}
-                  date={item['first_air_date']}
+                  date={item['first_air_date'].slice(0, 4)}
                   typeContent="tvseries"
                   featured={true}
                 />
@@ -122,8 +122,11 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
       </div>
 
       <div className="w-full border-b-[1px] border-b-secondaryGrey mb-5 pb-3">
-        <span className="px-3 py-1 w-full text-xl text-slate-200 border-l-[3px] border-l-primaryRed">
-          MOVIES
+        <span className="px-3 py-1 flex justify-between items-center w-full text-xl text-slate-200 border-l-[3px] border-l-primaryRed">
+          <h1>MOVIES</h1>
+          <span className="py-1 px-2  bg-primaryRed text-xs rounded-sm cursor-pointer hover:brightness-95">
+            SEE ALL
+          </span>
         </span>
         <ul className="grid grid-cols-3 gap-3 mt-6 md:grid-cols-4 lg:grid-cols-6 lg:gap-7">
           {filteredPopularMovies &&
@@ -134,7 +137,7 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
                   title={item['original_title']}
                   img={item['poster_path']}
                   rating={item['vote_average']}
-                  date={item['release_date']}
+                  date={item['release_date'].slice(0, 4)}
                   typeContent="movies"
                   featured={false}
                 />
@@ -144,8 +147,11 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
       </div>
 
       <div className="w-full pb-3">
-        <span className="px-3 py-1 w-full text-xl text-slate-200 border-l-[3px] border-l-primaryRed">
-          TV SERIES
+        <span className="px-3 py-1 w-full flex items-center justify-between text-xl text-slate-200 border-l-[3px] border-l-primaryRed">
+          <h2>TV SERIES</h2>
+          <span className="py-1 px-2  bg-primaryRed text-xs rounded-sm cursor-pointer hover:brightness-95">
+            SEE ALL
+          </span>
         </span>
         <ul className="grid grid-cols-3 gap-3 mt-6 md:grid-cols-4 lg:grid-cols-6 lg:gap-7">
           {filteredPopularTvSeries &&
@@ -156,7 +162,7 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
                   title={item['original_name']}
                   img={item.poster_path}
                   rating={item['vote_average']}
-                  date={item['first_air_date']}
+                  date={item['first_air_date'].slice(0, 4)}
                   typeContent="tvseries"
                   featured={false}
                 />
