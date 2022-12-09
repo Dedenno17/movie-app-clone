@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import Image from 'next/image';
 import { BsPlayCircle } from 'react-icons/bs';
 import { AiFillStar } from 'react-icons/ai';
+import { cutTitle } from '../../helpers/cutTitle';
 
 interface layoutProps {
   children?: ReactNode;
@@ -37,8 +38,8 @@ const ContentCard: React.FC<layoutProps> = (props) => {
         </span>
       </div>
       <div className="h-[20%] mt-2">
-        <h2 className=" text-primaryGrey text-md hover:text-primaryRed cursor-pointer">
-          {props.title}
+        <h2 className=" text-primaryGrey text-md hover:text-primaryRed cursor-pointer my-1">
+          {cutTitle(props.title)}
         </h2>
         <p className="text-ternaryGrey text-sm">{props.date}</p>
       </div>

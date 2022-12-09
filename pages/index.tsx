@@ -85,7 +85,7 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="w-full border-b-[1px] border-b-secondaryGrey mb-5">
+      <div className="w-full border-b-[1px] border-b-secondaryGrey mb-5 pb-3">
         <span className="px-3 py-1 w-full text-xl text-slate-200 border-l-[3px] border-l-primaryRed">
           FEATURED
         </span>
@@ -121,7 +121,7 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
         </ul>
       </div>
 
-      <div className="w-full border-b-[1px] border-b-secondaryGrey mb-5">
+      <div className="w-full border-b-[1px] border-b-secondaryGrey mb-5 pb-3">
         <span className="px-3 py-1 w-full text-xl text-slate-200 border-l-[3px] border-l-primaryRed">
           MOVIES
         </span>
@@ -143,7 +143,7 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
         </ul>
       </div>
 
-      <div className="w-full">
+      <div className="w-full pb-3">
         <span className="px-3 py-1 w-full text-xl text-slate-200 border-l-[3px] border-l-primaryRed">
           TV SERIES
         </span>
