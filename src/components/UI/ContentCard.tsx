@@ -34,7 +34,7 @@ const ContentCard: React.FC<layoutProps> = (props) => {
         )}
         <span className="absolute -bottom-12 right-0 p-1 flex items-center text-xs text-slate-200 bg-ternaryGrey/75  transition-all duration-500 group-hover:bottom-0">
           <AiFillStar className="mr-[6px]" />
-          {props.rating}
+          {props.rating.toFixed(1)}
         </span>
       </div>
       <div className="h-[20%] mt-2">

@@ -31,7 +31,7 @@ const Header: React.FC<{ onShow: () => void }> = (props) => {
 
   return (
     <header
-      className={`static max-w-[1440px] mx-auto ${
+      className={`static max-w-[1440px] mx-auto z-50 bg-primaryBlack/90 ${
         scrollYValue > 180 ? 'lg:fixed lg:top-0 lg:left-0 lg:right-0' : ''
       }`}
     >
@@ -41,9 +41,11 @@ const Header: React.FC<{ onShow: () => void }> = (props) => {
           onClick={props.onShow}
         />
         <span className="cursor-pointer lg:flex lg:items-center">
-          <h1 className="text-4xl font-bold text-primaryRed lg:text-5xl">
-            FELIX
-          </h1>
+          <Link href="/">
+            <h1 className="text-4xl font-bold text-primaryRed lg:text-5xl">
+              FELIX
+            </h1>
+          </Link>
           {navigationLinks.map(
             (item: links, i: number): ReactNode => (
               <Link href={`/${item.slug}`} key={Math.random() + i + ''}>
