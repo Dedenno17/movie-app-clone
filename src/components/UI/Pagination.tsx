@@ -18,7 +18,7 @@ const Pagination: React.FC<layoutProps> = ({
   onClickPrevTenPage,
 }) => {
   return (
-    <div className="w-full py-4 flex">
+    <div className="w-full py-4 hidden lg:flex">
       <div className="w-[10%] flex items-center">
         <p className="text-primaryGrey text-sm">Page {currPage}</p>
       </div>

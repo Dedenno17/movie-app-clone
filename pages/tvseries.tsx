@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import popularTvSeriesData from '../src/models/popularTvSeriesData';
 import TvSeriesContent from '../src/components/TvSeries/TvSeriesContent';
 import Pagination from '../src/components/UI/Pagination';
+import PaginationMobile from '../src/components/UI/PaginationMobile';
 
 interface MoviesProps {
   data: popularTvSeriesData;
@@ -139,6 +140,11 @@ const Movies: NextPage<MoviesProps> = ({ data }) => {
         currPage={currPage}
         pageNumber={pageNumber}
         onClickPage={clickPageHandler}
+        onClickNextTenPage={clickNextTenPageHandler}
+        onClickPrevTenPage={clickPrevTenPageHandler}
+      />
+
+      <PaginationMobile
         onClickNextTenPage={clickNextTenPageHandler}
         onClickPrevTenPage={clickPrevTenPageHandler}
       />
