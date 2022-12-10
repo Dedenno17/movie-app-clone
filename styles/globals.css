@@ -16,3 +16,19 @@
     scroll-behavior: smooth;
   }
 }
+
+@layer utilities {
+  .btn-genre-gradient {
+    background: rgb(15, 15, 15);
+    background: linear-gradient(
+      0deg,
+      rgba(15, 15, 15, 1) 13%,
+      rgba(229, 9, 21, 0.7) 53%,
+      rgba(15, 15, 15, 1) 92%
+    );
+  }
+
+  .btn-genre-shadow {
+    box-shadow: 0px 0px 10px 3px #e50915;
+  }
+}
