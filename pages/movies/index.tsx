@@ -1,10 +1,10 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from 'next';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import popularMoviesData from '../src/models/popularMoviesData';
-import MoviesContent from '../src/components/Movies/MoviesContent';
-import Pagination from '../src/components/UI/Pagination';
-import PaginationMobile from '../src/components/UI/PaginationMobile';
+import popularMoviesData from '../../src/models/popularMoviesData';
+import MoviesContent from '../../src/components/Movies/MoviesContent';
+import Pagination from '../../src/components/UI/Pagination';
+import PaginationMobile from '../../src/components/UI/PaginationMobile';
 
 interface MoviesProps {
   data: popularMoviesData;

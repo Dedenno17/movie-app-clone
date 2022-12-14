@@ -19,7 +19,7 @@ const ContentCard: React.FC<layoutProps> = (props) => {
     <li className="flex flex-col">
       <div className="relative h-[200px] overflow-hidden rounded-xl cursor-pointer group md:h-[240px] lg:h-[200px] xl:h-[240px]">
         <Image
-          src={`https://image.tmdb.org/t/p/w185${props.img}`}
+          src={`https://www.themoviedb.org/t/p/original${props.img}`}
           alt={props.title}
           fill
           sizes="true"
