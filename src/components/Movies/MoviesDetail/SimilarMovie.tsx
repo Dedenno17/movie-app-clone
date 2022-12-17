@@ -34,7 +34,7 @@ const SimilarMovie: React.FC<{ data: detailMovieSimilarInterface }> = ({
       >
         {data.results.map((item) => (
           <SwiperSlide key={item.id + ''}>
-            <div className="cursor-pointer relative h-[180px]">
+            <div className="cursor-pointer relative h-[180px] lg:h-[240px]">
               <Image
                 src={`https://www.themoviedb.org/t/p/original${item.poster_path}`}
                 alt={item.title}

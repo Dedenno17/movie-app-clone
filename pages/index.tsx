@@ -101,6 +101,7 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
                   date={item['release_date'].slice(0, 4)}
                   typeContent="movies"
                   featured={true}
+                  id={item.id}
                 />
               )
             )}
@@ -115,6 +116,7 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
                   date={item['first_air_date'].slice(0, 4)}
                   typeContent="tvseries"
                   featured={true}
+                  id={item.id}
                 />
               )
             )}
@@ -140,6 +142,7 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
                   date={item['release_date'].slice(0, 4)}
                   typeContent="movies"
                   featured={false}
+                  id={item.id}
                 />
               )
             )}
@@ -165,6 +168,7 @@ const Home: NextPage<HomeProps> = ({ popularMovies, popularTvSeries }) => {
                   date={item['first_air_date'].slice(0, 4)}
                   typeContent="tvseries"
                   featured={false}
+                  id={item.id}
                 />
               )
             )}

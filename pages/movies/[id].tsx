@@ -98,6 +98,8 @@ const MoviesDetail: NextPage = () => {
               productionCountries={detailMovieData.production_countries}
               runtime={detailMovieData.runtime}
               genres={detailMovieData.genres}
+              voteAverage={detailMovieData.vote_average}
+              voteCount={detailMovieData.vote_count}
             />
             <ButtonCategory
               onChange={changeCategoryHandler}

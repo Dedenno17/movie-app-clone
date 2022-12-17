@@ -27,16 +27,12 @@ const CastsMovie: React.FC<{ id: string | string[] | undefined }> = ({
           <ul className="w-full grid grid-cols-1">
             {detailMovieCasts.crew
               .filter((item) => item.job === 'Director')
-              .map((item, i) => (
+              .map((item) => (
                 <li
                   key={item.credit_id + ''}
-                  className={`flex items-center py-3 ${
-                    i === 0
-                      ? 'border-none'
-                      : 'border-t-[1px] border-t-ternaryGrey'
-                  }`}
+                  className="flex items-center py-3 border-b-[1px] border-b-ternaryGrey"
                 >
-                  <div className="w-[20%] h-[85px] relative">
+                  <div className="w-[20%] h-[85px] relative md:w-[10%] lg:w-[7%] xl:h-[110px]">
                     <Image
                       src={`https://www.themoviedb.org/t/p/original${item.profile_path}`}
                       alt={item.name}
@@ -57,17 +53,13 @@ const CastsMovie: React.FC<{ id: string | string[] | undefined }> = ({
               ))}
           </ul>
           <span className="w-full py-2 text-slate-200 text-xl">Casts</span>
-          <ul className="w-full grid grid-cols-1">
-            {detailMovieCasts.cast.slice(0, 10).map((item, i) => (
+          <ul className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {detailMovieCasts.cast.slice(0, 10).map((item) => (
               <li
                 key={item.cast_id + ''}
-                className={`flex items-center py-3 ${
-                  i === 0
-                    ? 'border-none'
-                    : 'border-t-[1px] border-t-ternaryGrey'
-                }`}
+                className="flex items-center py-3 border-b-[1px] border-b-ternaryGrey"
               >
-                <div className="w-[20%] h-[85px] relative">
+                <div className="w-[20%] h-[85px] relative xl:h-[110px]">
                   <Image
                     src={`https://www.themoviedb.org/t/p/original${item.profile_path}`}
                     alt={item.name}

@@ -31,7 +31,7 @@ const InfoMovie: React.FC<LayoutProps> = (props) => {
         )}
       </ul>
       <div className="w-full py-5 border-t-[1px] border-t-secondaryGrey mt-5">
-        <div className="relative h-[210px]">
+        <div className="relative h-[210px] md:h-[360px] lg:h-[480px] xl:h-[640px]">
           <Image
             src={`https://www.themoviedb.org/t/p/original${props.image}`}
             alt={props.title}
@@ -42,16 +42,16 @@ const InfoMovie: React.FC<LayoutProps> = (props) => {
         </div>
       </div>
       <ul className="w-full flex flex-col items-center">
-        <li className="w-full py-3 flex flex-col border-t-[1px] border-t-secondaryGrey">
-          <span className="w-[40%] py-1 text-sm text-slate-200">
+        <li className="w-full py-3 flex flex-col border-t-[1px] border-t-secondaryGrey md:flex-row">
+          <span className="w-[40%] py-1 text-sm text-slate-200 md:w-[20%]">
             Original Title
           </span>
           <span className="w-[50%] py-1 text-ternaryGrey text-xs">
             {props.originalTitle}
           </span>
         </li>
-        <li className="w-full py-3 flex flex-col border-t-[1px] border-t-secondaryGrey">
-          <span className="w-[40%] py-1 text-sm text-slate-200">
+        <li className="w-full py-3 flex flex-col border-t-[1px] border-t-secondaryGrey md:flex-row">
+          <span className="w-[40%] py-1 text-sm text-slate-200 md:w-[20%]">
             TMDB Rating
           </span>
           <span className="w-[50%] py-1 flex items-center text-xs">

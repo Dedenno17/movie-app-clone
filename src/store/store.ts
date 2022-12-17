@@ -1,4 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+// import logger from 'redux-logger';
 
 // reducers
 import appScreenWidthReducer from '../slices/appScreenWidth';
@@ -9,6 +10,7 @@ export const store = configureStore({
     appScreenWidth: appScreenWidthReducer,
     appScrollY: appScrollYReducer,
   },
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 export type AppDispatch = typeof store.dispatch;
