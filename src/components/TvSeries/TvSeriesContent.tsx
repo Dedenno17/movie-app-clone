@@ -32,8 +32,9 @@ const MoviesContent: React.FC<layoutProps> = ({
                 img={item['poster_path']}
                 rating={item['vote_average']}
                 date={item['first_air_date'].slice(0, 4)}
-                typeContent="movies"
+                typeContent="tvseries"
                 featured={false}
+                id={item.id}
               />
             )
           )}
@@ -48,8 +49,9 @@ const MoviesContent: React.FC<layoutProps> = ({
                 img={item['poster_path']}
                 rating={item['vote_average']}
                 date={item['first_air_date']}
-                typeContent="movies"
+                typeContent="tvseries"
                 featured={false}
+                id={item.id}
               />
             )
           )}

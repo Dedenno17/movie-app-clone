@@ -34,6 +34,7 @@ const MoviesContent: React.FC<layoutProps> = ({
                 date={item['release_date'].slice(0, 4)}
                 typeContent="movies"
                 featured={false}
+                id={item.id}
               />
             )
           )}
@@ -50,6 +51,7 @@ const MoviesContent: React.FC<layoutProps> = ({
                 date={item['release_date']}
                 typeContent="movies"
                 featured={false}
+                id={item.id}
               />
             )
           )}

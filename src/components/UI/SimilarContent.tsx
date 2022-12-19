@@ -2,10 +2,10 @@ import Image from 'next/image';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, A11y } from 'swiper';
-import detailMovieSimilarInterface from '../../../models/detailMovieSimilar';
+import detailMovieSimilarInterface from '../../models/detailMovieSimilar';
 import 'swiper/css';
 import 'swiper/css/autoplay';
-import { useAppSelector } from '../../../store/hooks';
+import { useAppSelector } from '../../store/hooks';
 
 const SimilarMovie: React.FC<{ data: detailMovieSimilarInterface }> = ({
   data,
@@ -14,7 +14,9 @@ const SimilarMovie: React.FC<{ data: detailMovieSimilarInterface }> = ({
 
   return (
     <div className="w-full p-8">
-      <span className="w-full py-3 text-lg text-slate-200">Film Terkait</span>
+      <span className="w-full py-3 text-lg text-slate-200">
+        Content Terkait
+      </span>
       <Swiper
         className="w-full mt-8"
         spaceBetween={20}
@@ -37,7 +39,7 @@ const SimilarMovie: React.FC<{ data: detailMovieSimilarInterface }> = ({
             <div className="cursor-pointer relative h-[180px] lg:h-[240px]">
               <Image
                 src={`https://www.themoviedb.org/t/p/original${item.poster_path}`}
-                alt={item.title}
+                alt="content similars"
                 fill
                 sizes="true"
                 priority

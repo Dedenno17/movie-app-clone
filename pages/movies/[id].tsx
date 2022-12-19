@@ -1,18 +1,18 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import TrailerVideo from '../../src/components/Movies/MoviesDetail/TrailerVideo';
+import TrailerVideo from '../../src/components/UI/TrailerVideo';
 import ProfileMovie from '../../src/components/Movies/MoviesDetail/ProfileMovie';
 import ButtonCategory from '../../src/components/Movies/MoviesDetail/ButtonCategory';
 import InfoMovie from '../../src/components/Movies/MoviesDetail/InfoMovie';
 import useFetch from '../../src/hooks/useFetch';
 import detailMovieInterface from '../../src/models/detailMovieData';
 import detailMovieVideoInterface from '../../src/models/detailMovieVideo';
-import CastsMovie from '../../src/components/Movies/MoviesDetail/CastsMovie';
+import CastsContent from '../../src/components/UI/CastsContent';
 import Head from 'next/head';
-import SocialMedia from '../../src/components/Movies/MoviesDetail/SocialMedia';
+import SocialMedia from '../../src/components/UI/SocialMedia';
 import detailMovieSimilarInterface from '../../src/models/detailMovieSimilar';
-import SimilarMovie from '../../src/components/Movies/MoviesDetail/SimilarMovie';
+import SimilarContent from '../../src/components/UI/SimilarContent';
 import SkeletonLoadingContentsDetail from '../../src/components/UI/SkeletonLoadingContentsDetail';
 
 const MoviesDetail: NextPage = () => {
@@ -30,7 +30,7 @@ const MoviesDetail: NextPage = () => {
     detailMovieVideoInterface | undefined
   >(undefined);
 
-  // state trailer data
+  // state similar data
   const [detailSimilarMovies, setDetailSimilarMovies] = useState<
     detailMovieSimilarInterface | undefined
   >(undefined);
@@ -117,10 +117,12 @@ const MoviesDetail: NextPage = () => {
                   voteCount={detailMovieData.vote_count}
                 />
               )}
-              {category === 'cast' && <CastsMovie id={id} />}
+              {category === 'cast' && (
+                <CastsContent id={id} typeContent="movie" />
+              )}
             </div>
             <SocialMedia />
-            <SimilarMovie data={detailSimilarMovies} />
+            <SimilarContent data={detailSimilarMovies} />
           </>
         )}
       {!detailMovieData &&
