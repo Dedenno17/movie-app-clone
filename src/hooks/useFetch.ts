@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const useFetch = (
   url: string,
-  id: string | string[] | undefined,
+  idAddress: string | string[] | undefined,
   setState: (data: any | undefined) => void
 ) => {
   // state is Loading
@@ -23,10 +23,10 @@ const useFetch = (
       }
     };
 
-    if (id) {
+    if (idAddress) {
       fetchDetailMovieData();
     }
-  }, [url, id, setState]);
+  }, [url, idAddress, setState]);
 
   return {
     isLoading,

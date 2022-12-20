@@ -104,7 +104,7 @@ const EpisodesOfSeasonList: React.FC<LayoutProps> = ({
               </div>
               <div className="h-14 w-[40%] pl-4 flex flex-col items-start justify-evenly ">
                 <span className="text-slate-200 text-sm hover:text-primaryRed cursor-pointer">
-                  {screenWidth && screenWidth > 768
+                  {screenWidth && screenWidth < 768
                     ? cutTitle(item.name)
                     : item.name}
                 </span>

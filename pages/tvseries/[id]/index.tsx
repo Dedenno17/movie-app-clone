@@ -19,6 +19,7 @@ import EpisodesOfSeasonList from '../../../src/components/TvSeries/SeriesDetail/
 const TvSeries: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
+  const idAddress = id?.toString().split(' ')[1];
 
   // state detail movie data
   const [detailSeriesData, setDetailSeriesData] = useState<
@@ -45,22 +46,22 @@ const TvSeries: NextPage = () => {
 
   // fetching detail series data
   const { isLoading: loadingSeries } = useFetch(
-    `https://api.themoviedb.org/3/tv/${id}?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US`,
-    id,
+    `https://api.themoviedb.org/3/tv/${idAddress}?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US`,
+    idAddress,
     setDetailSeriesData
   );
 
   // fetching detail movie trailer video
   const { isLoading: loadingTrailer } = useFetch(
-    `https://api.themoviedb.org/3/tv/${id}/videos?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US`,
-    id,
+    `https://api.themoviedb.org/3/tv/${idAddress}/videos?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US`,
+    idAddress,
     setDetailVideoTrailer
   );
 
   // fetching detail similar movies
   const { isLoading: loadingSimilarSeries } = useFetch(
-    `https://api.themoviedb.org/3/tv/${id}/similar?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US&page=1`,
-    id,
+    `https://api.themoviedb.org/3/tv/${idAddress}/similar?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US&page=1`,
+    idAddress,
     setDetailSimilarSeries
   );
 
@@ -78,7 +79,6 @@ const TvSeries: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       {detailSeriesData &&
         detailVideoTrailer &&
         detailSimilarSeries &&
@@ -117,7 +117,7 @@ const TvSeries: NextPage = () => {
                       seasonData={item}
                       key={item.id + ''}
                       index={i}
-                      idSeries={id}
+                      idSeries={idAddress}
                     />
                   ))}
                 </>
@@ -135,12 +135,15 @@ const TvSeries: NextPage = () => {
                   seasons={detailSeriesData.seasons}
                 />
               )}
-              {category === 'cast' && <CastsContent id={id} typeContent="tv" />}
+              {category === 'cast' && (
+                <CastsContent id={idAddress} typeContent="tv" />
+              )}
             </div>
             <SocialMedia />
             <SimilarContent data={detailSimilarSeries} />
           </>
         )}
+      // Skeleton loading
       {!detailSeriesData &&
         !detailVideoTrailer &&
         !detailSimilarSeries &&

@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TrailerVideo from '../../src/components/UI/TrailerVideo';
 import ProfileMovie from '../../src/components/Movies/MoviesDetail/ProfileMovie';
 import ButtonCategory from '../../src/components/Movies/MoviesDetail/ButtonCategory';
@@ -19,6 +19,7 @@ const MoviesDetail: NextPage = () => {
   // get the router query
   const router = useRouter();
   const { id } = router.query;
+  const idAddress = id?.toString().split(' ')[1];
 
   // state detail movie data
   const [detailMovieData, setDetailMovieData] = useState<
@@ -45,24 +46,28 @@ const MoviesDetail: NextPage = () => {
 
   // fetching detail movie data
   const { isLoading: loadingMovie } = useFetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US`,
-    id,
+    `https://api.themoviedb.org/3/movie/${idAddress}?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US`,
+    idAddress,
     setDetailMovieData
   );
 
   // fetching detail movie trailer video
   const { isLoading: loadingTrailer } = useFetch(
-    `https://api.themoviedb.org/3/movie/${id}/videos?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US`,
-    id,
+    `https://api.themoviedb.org/3/movie/${idAddress}/videos?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US`,
+    idAddress,
     setDetailVideoTrailer
   );
 
   // fetching detail similar movies
   const { isLoading: loadingSimilarMovies } = useFetch(
-    `https://api.themoviedb.org/3/movie/${id}/similar?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US&page=1`,
-    id,
+    `https://api.themoviedb.org/3/movie/${idAddress}/similar?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US&page=1`,
+    idAddress,
     setDetailSimilarMovies
   );
+
+  useEffect(() => {
+    console.log(idAddress);
+  }, [idAddress]);
 
   return (
     <div className="w-full">
