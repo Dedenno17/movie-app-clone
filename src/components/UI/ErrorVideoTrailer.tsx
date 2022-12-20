@@ -21,9 +21,9 @@ const ErrorVideoTrailer: React.FC<{ screenWidth: number | undefined }> = (
           : 0 + 'px',
       }}
     >
-      <TbMovieOff className="text-primaryRed text-[200px] font-light mb-4" />
-      <span className="text-6xl text-primaryRed font-light">
-        Cant play the Video!
+      <TbMovieOff className="text-primaryRed text-[110px] font-light mb-4" />
+      <span className="text-4xl text-primaryRed font-light text-center">
+        {"Can't play the Video!"}
       </span>
     </div>
   );

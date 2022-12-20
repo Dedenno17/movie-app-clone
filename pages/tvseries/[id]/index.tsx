@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useFetch from '../../../src/hooks/useFetch';
 import TrailerVideo from '../../../src/components/UI/TrailerVideo';
 import ProfileSeries from '../../../src/components/TvSeries/SeriesDetail/ProfileSeries';
@@ -14,6 +14,7 @@ import InfoSeries from '../../../src/components/TvSeries/SeriesDetail/InfoSeries
 import detailSeriesInterface from '../../../src/models/detailSeriesData';
 import detailSeriesVideoInterface from '../../../src/models/detailMovieVideo';
 import detailMovieSimilarInterface from '../../../src/models/detailMovieSimilar';
+import EpisodesOfSeasonList from '../../../src/components/TvSeries/SeriesDetail/EpisodesOfSeasonList';
 
 const TvSeries: NextPage = () => {
   const router = useRouter();
@@ -106,6 +107,21 @@ const TvSeries: NextPage = () => {
             />
 
             <div className="w-full px-10 py-8">
+              {category === 'episodes' && (
+                <>
+                  <h2 className="text-lg mb-3 text-slate-200">
+                    Seasons and Episodes
+                  </h2>
+                  {detailSeriesData.seasons.map((item, i) => (
+                    <EpisodesOfSeasonList
+                      seasonData={item}
+                      key={item.id + ''}
+                      index={i}
+                      idSeries={id}
+                    />
+                  ))}
+                </>
+              )}
               {category === 'info' && (
                 <InfoSeries
                   overview={detailSeriesData.overview}
@@ -120,7 +136,6 @@ const TvSeries: NextPage = () => {
                 />
               )}
               {category === 'cast' && <CastsContent id={id} typeContent="tv" />}
-              s
             </div>
             <SocialMedia />
             <SimilarContent data={detailSimilarSeries} />
