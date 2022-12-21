@@ -36,7 +36,9 @@ const EpisodeDetail: NextPage = () => {
     <div className="w-full">
       <Head>
         <title>
-          Season {numberOfSeason} - Episode {numberOfEpisode}
+          {episodeDetailData
+            ? `Season ${numberOfSeason} - Episode ${numberOfEpisode}`
+            : 'TV Series Season'}
         </title>
         <meta
           name={
@@ -80,6 +82,22 @@ const EpisodeDetail: NextPage = () => {
           </div>
           <SocialMedia />
         </>
+      )}
+      {loadingEpisode && (
+        <div className="w-full py-5 px-10 animate-pulse">
+          <div className="w-[50%] py-3 bg-primaryGrey mb-2" />
+          <div className="w-full py-3 bg-primaryGrey mb-1" />
+          <div className="w-full py-3 bg-primaryGrey mb-1" />
+          <div className="w-full py-3 bg-primaryGrey mb-1" />
+          <div className="w-full py-3 bg-primaryGrey" />
+          <div className="w-full py-5 border-y-[1px] border-y-secondaryGrey my-5">
+            <div className="bg-primaryGrey h-[210px] md:h-[360px] lg:h-[480px] xl:h-[640px]" />
+          </div>
+          <div className="w-full flex items-center">
+            <span className="py-2 w-44 mr-5 bg-primaryGrey" />
+            <span className="py-2 w-24 bg-primaryGrey" />
+          </div>
+        </div>
       )}
     </div>
   );
