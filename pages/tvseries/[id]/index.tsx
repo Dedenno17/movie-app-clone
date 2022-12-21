@@ -112,14 +112,17 @@ const TvSeries: NextPage = () => {
                   <h2 className="text-lg mb-3 text-slate-200">
                     Seasons and Episodes
                   </h2>
-                  {detailSeriesData.seasons.map((item, i) => (
-                    <EpisodesOfSeasonList
-                      seasonData={item}
-                      key={item.id + ''}
-                      index={i}
-                      idSeries={idAddress}
-                    />
-                  ))}
+                  {detailSeriesData.seasons
+                    .sort((a, b) => b.season_number - a.season_number)
+                    .map((item, i) => (
+                      <EpisodesOfSeasonList
+                        seasonData={item}
+                        key={item.id + ''}
+                        index={i}
+                        idSeries={id}
+                        idAddress={idAddress}
+                      />
+                    ))}
                 </>
               )}
               {category === 'info' && (
@@ -143,7 +146,7 @@ const TvSeries: NextPage = () => {
             <SimilarContent data={detailSimilarSeries} />
           </>
         )}
-      // Skeleton loading
+
       {!detailSeriesData &&
         !detailVideoTrailer &&
         !detailSimilarSeries &&

@@ -7,17 +7,20 @@ import SkeletonLoadingEpisode from '../../UI/SkeletonLoadingEpisode';
 import { dateFormat } from '../../../helpers/dateFormat';
 import { cutTitle } from '../../../helpers/cutTitle';
 import { useAppSelector } from '../../../store/hooks';
+import Link from 'next/link';
 
 interface LayoutProps {
   seasonData: season;
   index: number;
   idSeries: string | string[] | undefined;
+  idAddress: string | string[] | undefined;
 }
 
 const EpisodesOfSeasonList: React.FC<LayoutProps> = ({
   seasonData,
   index,
   idSeries,
+  idAddress,
 }) => {
   // get the value of screenWidth
   const screenWidth = useAppSelector((state) => state.appScreenWidth.value);
@@ -38,7 +41,7 @@ const EpisodesOfSeasonList: React.FC<LayoutProps> = ({
     const getDetailSeasonData = async () => {
       try {
         const res = await fetch(
-          `https://api.themoviedb.org/3/tv/${idSeries}/season/${seasonData.season_number}?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US`
+          `https://api.themoviedb.org/3/tv/${idAddress}/season/${seasonData.season_number}?api_key=639d75e6b806c03213815ae9aa5a9376&language=en-US`
         );
         if (!res.ok) {
           throw new Error('Failed Fetching data');
@@ -54,7 +57,7 @@ const EpisodesOfSeasonList: React.FC<LayoutProps> = ({
     if (isOpen && !detailSeasonData) {
       getDetailSeasonData();
     }
-  }, [isOpen, idSeries, seasonData.season_number, detailSeasonData]);
+  }, [isOpen, idAddress, seasonData.season_number, detailSeasonData]);
 
   return (
     <>
@@ -103,11 +106,17 @@ const EpisodesOfSeasonList: React.FC<LayoutProps> = ({
                 {item.season_number} - {item.episode_number}
               </div>
               <div className="h-14 w-[40%] pl-4 flex flex-col items-start justify-evenly ">
-                <span className="text-slate-200 text-sm hover:text-primaryRed cursor-pointer">
-                  {screenWidth && screenWidth < 768
-                    ? cutTitle(item.name)
-                    : item.name}
-                </span>
+                <Link
+                  href={`/tvseries/${idSeries}/season-${
+                    item.season_number === 0 ? 'specials' : item.season_number
+                  }-episode-${item.episode_number} ${idAddress}`}
+                >
+                  <span className="text-slate-200 text-sm hover:text-primaryRed cursor-pointer">
+                    {screenWidth && screenWidth < 768
+                      ? cutTitle(item.name)
+                      : item.name}
+                  </span>
+                </Link>
                 <span className="text-ternaryGrey text-[11px]">
                   {dateFormat(item.air_date)}
                 </span>

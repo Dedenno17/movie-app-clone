@@ -33,13 +33,13 @@ const ProfileSeries: React.FC<LayoutProps> = (props) => {
           <span className="w-[65%] text-ternaryGrey text-xs md:w-[20%] lg:w-[13%]">
             {dateFormat(props.firstAirDate)},
           </span>
-          <ul className="w-[65%] flex flex-wrap items-center text-ternaryGrey md:w-[35%] lg:w-[20%]">
+          <ul className="w-[65%] flex flex-wrap items-center text-ternaryGrey md:w-[80%]">
             {props.productionCompanies.map((item) => (
               <li
                 key={item.id + ''}
                 className={`text-primaryRed text-xs mr-1 mt-2 md:mt-0`}
               >
-                {item.name}
+                {item.name + ','}
               </li>
             ))}
           </ul>
