@@ -5,6 +5,7 @@ import { BiCameraMovie } from 'react-icons/bi';
 import { BiMoviePlay } from 'react-icons/bi';
 import { AiFillFolderOpen } from 'react-icons/ai';
 import { AiFillCaretDown } from 'react-icons/ai';
+import { HiOutlineXMark } from 'react-icons/hi2';
 import SearchMobile from './SearchMobile';
 import Link from 'next/link';
 import { useAppSelector } from '../../store/hooks';
@@ -60,10 +61,18 @@ const Header: React.FC<{ onShow: () => void }> = (props) => {
             )
           )}
         </span>
-        <BiSearch
-          className="text-2xl cursor-pointer lg:hidden"
-          onClick={showSearchMobileHandler}
-        />
+        {!isShowSearchMobile && (
+          <BiSearch
+            className="text-2xl cursor-pointer lg:hidden"
+            onClick={showSearchMobileHandler}
+          />
+        )}
+        {isShowSearchMobile && (
+          <HiOutlineXMark
+            className="text-2xl cursor-pointer lg:hidden text-primaryRed"
+            onClick={showSearchMobileHandler}
+          />
+        )}
         <form className="hidden lg:flex lg:justify-between items-center bg-ternaryGrey pr-4 rounded-md">
           <input
             type="text"
@@ -73,7 +82,7 @@ const Header: React.FC<{ onShow: () => void }> = (props) => {
           <BiSearch className="text-2xl cursor-pointer bg-transparent text-primaryGrey " />
         </form>
       </div>
-      {isShowSearchMobile && <SearchMobile />}
+      {isShowSearchMobile && <SearchMobile onShow={showSearchMobileHandler} />}
     </header>
   );
 };

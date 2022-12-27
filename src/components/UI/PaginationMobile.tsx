@@ -3,23 +3,27 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 interface layoutProps {
   children?: ReactNode;
-  onClickNextTenPage: () => void;
-  onClickPrevTenPage: () => void;
+  onClickNextPage: () => void;
+  onClickPrevPage: () => void;
+  currPage: number;
 }
 
 const PaginationMobile: React.FC<layoutProps> = ({
-  onClickNextTenPage,
-  onClickPrevTenPage,
+  onClickNextPage,
+  onClickPrevPage,
+  currPage,
 }) => {
   return (
     <div className="flex justify-between py-4 w-full lg:hidden">
       <FaAngleLeft
-        className="w-[40%] h-10 bg-ternaryGrey text-slate-200 md:w-[30%]"
-        onClick={onClickPrevTenPage}
+        className={`w-[40%] h-10 bg-ternaryGrey text-slate-200 md:w-[30%] ${
+          currPage === 1 ? 'invisible' : 'visible'
+        }`}
+        onClick={onClickPrevPage}
       />
       <FaAngleRight
         className="w-[40%] h-10 bg-ternaryGrey text-slate-200 md:w-[30%]"
-        onClick={onClickNextTenPage}
+        onClick={onClickNextPage}
       />
     </div>
   );

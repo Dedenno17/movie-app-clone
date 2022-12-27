@@ -145,8 +145,9 @@ const Movies: NextPage<MoviesProps> = ({ data }) => {
       />
 
       <PaginationMobile
-        onClickNextTenPage={clickNextTenPageHandler}
-        onClickPrevTenPage={clickPrevTenPageHandler}
+        onClickNextPage={clickNextTenPageHandler}
+        onClickPrevPage={clickPrevTenPageHandler}
+        currPage={currPage}
       />
     </div>
   );

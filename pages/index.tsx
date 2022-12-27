@@ -24,7 +24,7 @@ export const getPopularMovies = async (): Promise<
     const data = await res.json();
     return data;
   } catch (err: any) {
-    alert(err.message);
+    console.log(err.message);
   }
 };
 
@@ -42,7 +42,7 @@ export const getPopularTvSeries = async (): Promise<
     const data = await res.json();
     return data;
   } catch (err: any) {
-    alert(err.message);
+    console.log(err.message);
   }
 };
 

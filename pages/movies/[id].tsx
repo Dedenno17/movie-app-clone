@@ -65,10 +65,6 @@ const MoviesDetail: NextPage = () => {
     setDetailSimilarMovies
   );
 
-  useEffect(() => {
-    console.log(idAddress);
-  }, [idAddress]);
-
   return (
     <div className="w-full">
       <Head>
