@@ -8,7 +8,8 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import { HiOutlineXMark } from 'react-icons/hi2';
 import SearchMobile from './SearchMobile';
 import Link from 'next/link';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { setSearchValue } from '../../slices/searchValue';
 
 interface links {
   name: string;
@@ -23,12 +24,22 @@ const navigationLinks: links[] = [
 ];
 
 const Header: React.FC<{ onShow: () => void }> = (props) => {
+  const dispatch = useAppDispatch();
   const [isShowSearchMobile, setIsShowSearchMobile] = useState<boolean>(false);
   const scrollYValue = useAppSelector((state) => state.appScrollY.value);
 
+  // state of searchValue
+  const [inputSearchValue, setInputSearchValue] = useState<string>('');
+
+  // function to show mobile search
   const showSearchMobileHandler = () => {
     setIsShowSearchMobile((prevState) => !prevState);
   };
+
+  // change the global state when the local state change
+  useEffect(() => {
+    dispatch(setSearchValue(inputSearchValue));
+  }, [inputSearchValue]);
 
   return (
     <header
@@ -78,6 +89,8 @@ const Header: React.FC<{ onShow: () => void }> = (props) => {
             type="text"
             className="w-[85%] pl-4 py-2 text-lg font-semibold bg-transparent border-none outline-none text-primaryGrey placeholder:text-secondaryGrey placeholder:font-light"
             placeholder="Search ..."
+            value={inputSearchValue}
+            onChange={(e) => setInputSearchValue(e.target.value)}
           />
           <BiSearch className="text-2xl cursor-pointer bg-transparent text-primaryGrey " />
         </form>
