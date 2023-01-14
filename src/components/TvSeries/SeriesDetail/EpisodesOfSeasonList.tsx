@@ -78,7 +78,8 @@ const EpisodesOfSeasonList: React.FC<LayoutProps> = ({
           {seasonData.name}
         </div>
         <div className="h-14 w-[40%] pl-4 flex justify-start items-center text-xs text-ternaryGrey ">
-          {dateFormat(seasonData.air_date)}
+          {seasonData.air_date && dateFormat(seasonData.air_date)}
+          {!seasonData.air_date && ''}
         </div>
       </div>
       {detailSeasonData && !isLoading && isOpen && (

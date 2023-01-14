@@ -31,7 +31,8 @@ const ProfileSeries: React.FC<LayoutProps> = (props) => {
         <h1 className="text-4xl text-white font-extralight">{props.name}</h1>
         <div className="w-full flex flex-wrap items-center my-2">
           <span className="w-[65%] text-ternaryGrey text-xs md:w-[20%] lg:w-[13%]">
-            {dateFormat(props.firstAirDate)},
+            {props.firstAirDate && dateFormat(props.firstAirDate.toString())}
+            {!props.firstAirDate && ''}
           </span>
           <ul className="w-[65%] flex flex-wrap items-center text-ternaryGrey md:w-[80%]">
             {props.productionCompanies.map((item) => (

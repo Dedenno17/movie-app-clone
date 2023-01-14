@@ -57,7 +57,8 @@ const InfoSeries: React.FC<LayoutProps> = (props) => {
             First air date
           </span>
           <span className="w-[50%] py-1 text-ternaryGrey text-xs">
-            {dateFormat(props.firstAirDate)}
+            {!props.firstAirDate && ''}
+            {props.firstAirDate && dateFormat(props.firstAirDate.toString())}
           </span>
         </li>
         <li className="w-full py-3 flex flex-col border-t-[1px] border-t-secondaryGrey md:flex-row">

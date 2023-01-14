@@ -119,7 +119,7 @@ const MoviesDetail: NextPage = () => {
                 />
               )}
               {category === 'cast' && (
-                <CastsContent id={id} typeContent="movie" />
+                <CastsContent id={idAddress} typeContent="movie" />
               )}
             </div>
             <SocialMedia />

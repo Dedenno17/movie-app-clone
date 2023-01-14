@@ -41,10 +41,6 @@ const SearchContentList: React.FC = () => {
     return () => clearTimeout(timeout);
   }, [searchValue]);
 
-  useEffect(() => {
-    console.log(scrollYValue);
-  }, [scrollYValue]);
-
   return (
     <div
       className={`fixed w-80 z-55 bg-black/90 top-[5.3rem] right-10 transition duration-150 ${

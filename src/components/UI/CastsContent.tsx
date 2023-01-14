@@ -22,7 +22,7 @@ const CastsMovie: React.FC<{
 
   return (
     <>
-      {detailMovieCasts && !loadingCasts && (
+      {id && detailMovieCasts && !loadingCasts && (
         <div className="w-full">
           <span className="w-full py-2 text-slate-200 text-xl">Director</span>
           <ul className="w-full grid grid-cols-1">
